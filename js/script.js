@@ -43,7 +43,7 @@ window.addEventListener("keydown", (event) => {
       break;
     case "Space": case "KeyW":
       if(player.velocity.y === 0)
-      player.velocity.y = -13 // jump (spacebar or W)
+      player.velocity.y = -17 // jump (spacebar or W)
   }
 })
 
