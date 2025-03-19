@@ -27,7 +27,7 @@ class Player {
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 
-  1
+  
   update() {
     this.position.x += this.velocity.x
     this.position.y += this.velocity.y
@@ -36,5 +36,18 @@ class Player {
       this.velocity.y += this.gravity
       
     } else this.velocity.y = 0
+  }
+}
+
+class Sprite {
+  constructor ({position, scale}) {
+    this.position = position
+    this.scale = scale
+    this.image = new Image()
+    this.image.src = "./sprites/background.png"
+  }
+
+  draw() {
+    c.drawImage(this.image, this.position.x, this.position.y, this.scale.width, this.scale.height )
   }
 }

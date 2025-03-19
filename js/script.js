@@ -5,26 +5,39 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const player = new Player
+const background = new Sprite({
+  position: {
+    x: 0,
+    y:0,
+  },
+
+  scale: {
+    width: canvas.width,
+    height: canvas.height
+  }
+})
+
+
 let keys = {
   d: {
     pressed: false
   },
   a: {
     pressed: false
-  }
+  },
 }
+
 function animate() {
   window.requestAnimationFrame(animate); 
-  c.fillStyle = "white";
-  c.fillRect(0, 0, canvas.width, canvas.height)
-
+  background.draw()
+  
   player.velocity.x = 0
 
   if(keys.d.pressed) {
-    player.velocity.x = 8
+    player.velocity.x = 5
   } else if (keys.a.pressed) {
-    player.velocity.x = -8
-  }
+    player.velocity.x = -5  
+  } 
 
   player.draw()
   player.update();
@@ -44,7 +57,9 @@ window.addEventListener("keydown", (event) => {
     case "Space": case "KeyW":
       if(player.velocity.y === 0)
       player.velocity.y = -17 // jump (spacebar or W)
+      break;
   }
+  
 })
 
 window.addEventListener("keyup", (event) => {
@@ -55,6 +70,5 @@ window.addEventListener("keyup", (event) => {
     case "KeyA":
       keys.a.pressed = false
       break;
-    
   }
 })
