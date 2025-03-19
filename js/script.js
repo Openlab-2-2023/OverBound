@@ -2,10 +2,10 @@ const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 
 // musi byt 16:9 
-// 1920:1080 sa nezmesti :(
-canvas.width = innerWidth; 
-canvas.height = innerHeight;
+// fullscreen sa neda :(
 
+canvas.width = 1280; 
+canvas.height = 720;
 
 const player = new Player
 const background = new Sprite({
