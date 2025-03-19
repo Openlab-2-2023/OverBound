@@ -1,8 +1,11 @@
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// musi byt 16:9 
+// 1920:1080 sa nezmesti :(
+canvas.width = 1536; 
+canvas.height = 864;
+
 
 const player = new Player
 const background = new Sprite({
@@ -14,7 +17,9 @@ const background = new Sprite({
   scale: {
     width: canvas.width,
     height: canvas.height
-  }
+  },
+
+  imageSrc: "./sprites/background1.png"
 })
 
 
@@ -30,7 +35,7 @@ let keys = {
 function animate() {
   window.requestAnimationFrame(animate); 
   background.draw()
-  
+
   player.velocity.x = 0
 
   if(keys.d.pressed) {

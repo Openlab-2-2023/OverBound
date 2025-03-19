@@ -40,14 +40,15 @@ class Player {
 }
 
 class Sprite {
-  constructor ({position, scale}) {
+  constructor ({position, scale, imageSrc}) {
     this.position = position
     this.scale = scale
     this.image = new Image()
-    this.image.src = "./sprites/background.png"
+    this.image.src = imageSrc
   }
 
   draw() {
     c.drawImage(this.image, this.position.x, this.position.y, this.scale.width, this.scale.height )
+    
   }
 }
