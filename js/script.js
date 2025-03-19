@@ -3,8 +3,8 @@ const c = canvas.getContext("2d");
 
 // musi byt 16:9 
 // 1920:1080 sa nezmesti :(
-canvas.width = 1536; 
-canvas.height = 864;
+canvas.width = innerWidth; 
+canvas.height = innerHeight;
 
 
 const player = new Player
@@ -19,7 +19,7 @@ const background = new Sprite({
     height: canvas.height
   },
 
-  imageSrc: "./sprites/background1.png"
+  imageSrc: "./sprites/background2.png"
 })
 
 
