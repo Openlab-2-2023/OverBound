@@ -4,8 +4,14 @@ const c = canvas.getContext("2d");
 // musi byt 16:9 
 // fullscreen sa neda :(
 
-canvas.width = innerWidth; 
-canvas.height = 720;
+
+if(innerWidth <= 1536) {
+  canvas.width = 1280
+  canvas.height = 720;
+} else if (innerWidth > 1536) {
+  canvas.width = 1664
+  canvas.height = 936
+}
 
 const player = new Player
 const background = new Sprite({
