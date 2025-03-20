@@ -3,8 +3,6 @@ const c = canvas.getContext("2d");
 
 // musi byt 16:9 
 // fullscreen sa neda :(
-
-
 if(innerWidth <= 1536) {
   canvas.width = 1280
   canvas.height = 720;
@@ -25,7 +23,7 @@ const background = new Sprite({
     height: canvas.height
   },
 
-  imageSrc: "./sprites/background2.png"
+  imageSrc: "./sprites/level1.png"
 })
 
 
@@ -41,6 +39,9 @@ let keys = {
 function animate() {
   window.requestAnimationFrame(animate); 
   background.draw()
+  collisionBlocks.forEach(CollisionBlock => {
+    CollisionBlock.draw()
+  }) 
 
   player.velocity.x = 0
 
