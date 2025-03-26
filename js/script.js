@@ -18,7 +18,7 @@ const background = new Sprite({
     height: canvas.height
   },
 
-  imageSrc: "./sprites/LEVEL1.png"
+  imageSrc: "./sprites/level1.png"
 })
 
 
