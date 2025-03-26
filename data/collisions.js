@@ -19,11 +19,11 @@ class CollisionBlock {
   constructor( {position} ) {
     this.position = position
     this.width = 64,
-    this.height = 64  
+    this.height = 62  
   }
 
   draw() {
-    c.fillStyle = 'red'
+    c.fillStyle = 'rgba(255,0,0,0.5'
     c.fillRect(this.position.x, this.position.y, this.width, this.height)
   }
 }
@@ -40,16 +40,14 @@ Array.prototype.Parse2D = function() {
 const collisionBlocks = []
 const parsedCollisions = level1Collisions.Parse2D()
 
-let scaleMultiplier = 50 / 92
-
 parsedCollisions.forEach((row, y) => {
     row.forEach((symbol, x) => {
       if(symbol === 1330) {
         collisionBlocks.push(
           new CollisionBlock({
             position: {
-              x: x * (92 * scaleMultiplier),
-              y: y * (92* scaleMultiplier)
+              x: x * 51,
+              y: y * 50
             }
         }))
       }
