@@ -3,8 +3,8 @@ const c = canvas.getContext("2d");
 
 // musi byt 16:9 
 // fullscreen sa neda :(
-  canvas.width = 1280
-  canvas.height = 720;
+  canvas.width = 1024
+  canvas.height = 596;
 
 const player = new Player
 const background = new Sprite({
@@ -18,7 +18,7 @@ const background = new Sprite({
     height: canvas.height
   },
 
-  imageSrc: "./sprites/level1.png"
+  imageSrc: "./sprites/LEVEL1.png"
 })
 
 
