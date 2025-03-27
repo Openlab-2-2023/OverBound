@@ -6,7 +6,14 @@ const c = canvas.getContext("2d");
   canvas.width = 1024
   canvas.height = 596;
 
-const player = new Player
+  const parsedCollisions = level1Collisions.Parse2D()
+  const collisionBlocks = parsedCollisions.createObjectsFrom2D()
+
+
+
+const player = new Player({
+  collisionBlocks,
+})
 const background = new Sprite({
   position: {
     x: 0,
@@ -62,8 +69,8 @@ window.addEventListener("keydown", (event) => {
       keys.a.pressed = true
       break;
     case "Space": case "KeyW":
-      if(player.velocity.y === 0)
-      player.velocity.y = -15 // jump (spacebar or W)
+      if(player.velocity.y >= 0 < 2)
+      player.velocity.y = -17 // jump (spacebar or W)
       break;
   }
   
