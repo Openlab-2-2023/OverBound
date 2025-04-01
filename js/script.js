@@ -68,8 +68,12 @@ window.addEventListener("keydown", (event) => {
       //move left (A)
       keys.a.pressed = true
       break;
+      case "KeyS":
+      //duckujes
+      keys.s.pressed = true
+      break;
     case "Space": case "KeyW":
-      if(player.velocity.y >= 0 < 2)
+      if(player.velocity.y >= 0 && player.velocity.y >= 0 < 2)
       player.velocity.y = -17 // jump (spacebar or W)
       break;
   }
