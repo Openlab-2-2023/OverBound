@@ -36,7 +36,18 @@ let keys = {
   a: {
     pressed: false
   },
+  p: {
+    pressed: false
+  },
+  s: {
+    pressed: false
+  },
+  w: {
+    pressed: false
+  }
 }
+
+let kolagenbar = -70
 
 function animate() {
   window.requestAnimationFrame(animate); 
@@ -47,11 +58,23 @@ function animate() {
 
   player.velocity.x = 0
 
+  c.fillStyle = 'gray'
+  c.fillRect(50, 50, 10, 70);
+  const grad=c.createLinearGradient(2,0, 36,100);
+  grad.addColorStop(0.5, "#ff8d00");
+  grad.addColorStop(1, "#020024"); 
+  c.fillStyle = grad;
+  c.fillRect(50, 120, 10,kolagenbar);
+
   if(keys.d.pressed) {
     player.velocity.x = 5
   } else if (keys.a.pressed) {
     player.velocity.x = -5  
-  } 
+  } else if (keys.p.pressed) {
+    if(kolagenbar > -70) {
+      kolagenbar = kolagenbar - 1
+    }
+  }
 
   player.draw()
   player.update();
@@ -62,20 +85,38 @@ window.addEventListener("keydown", (event) => {
   switch(event.code) {
     case "KeyD": 
       // move right (D)
-      keys.d.pressed = true
+        keys.d.pressed = true
       break;
     case "KeyA":
       //move left (A)
       keys.a.pressed = true
+
       break;
       case "KeyS":
       //duckujes
       keys.s.pressed = true
       break;
-    case "Space": case "KeyW":
-      if(player.velocity.y >= 0 && player.velocity.y >= 0 < 2)
-      player.velocity.y = -17 // jump (spacebar or W)
+    case "KeyP":
+      keys.p.pressed = true
       break;
+    case "Space": case "KeyW":
+    if(keys.s.pressed) {
+    
+      if(player.velocity.y ==0) {
+        if(kolagenbar <= -28) {
+          player.velocity.y = -25
+          kolagenbar = kolagenbar + 28
+        }
+      }
+    }
+          if(player.velocity.y ==0) {
+            if(kolagenbar <= -14) {
+              player.velocity.y = -17
+              kolagenbar = kolagenbar + 14
+            }
+          }
+      break;
+    
   }
   
 })
@@ -88,5 +129,14 @@ window.addEventListener("keyup", (event) => {
     case "KeyA":
       keys.a.pressed = false
       break;
+    case 'KeyP':
+      keys.p.pressed = false
+      break;
+      case 'KeyS':
+        keys.s.pressed = false
+      break;
+    case "KeyW":
+      keys.w.pressed = false
+    break;
   }
 })

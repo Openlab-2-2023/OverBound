@@ -37,7 +37,7 @@ Array.prototype.createObjectsFrom2D = function() {
           new CollisionBlock({
             position: {
               x: x * 32,
-              y: y * 32
+              y: y * 33
             }
         }))
       }

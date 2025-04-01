@@ -12,7 +12,6 @@ class Player {
     this.height = 40
 
     this.sides = {
-      // treba aj ostatne dopisat
       bottom: this.position.y + this.height
     }
 
