@@ -26,18 +26,16 @@ class Player {
     console.log(this.collisionBlocks)
 
   }
-  // kreslenie charaktera pri requestAnimationFrame()
   draw() {
     c.fillStyle = 'red'
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 
-  
   update() {
     this.position.x += this.velocity.x
 
 
-    //horizontalne
+    //horizontalne kolizie
     for(let i = 0; i < this.collisionBlocks.length; i++) {
       const collisionBlock = this.collisionBlocks[i]
 
@@ -64,7 +62,7 @@ class Player {
 
 
 
-    //vertikalne (gravitacia)
+    //vertikalne kolizie (gravitacia)
     for(let i = 0; i < this.collisionBlocks.length; i++) {
       const collisionBlock = this.collisionBlocks[i]
 
@@ -87,32 +85,5 @@ class Player {
       }
     }
 
-  }
-}
-
-class Sprite {
-  constructor ({position, scale, imageSrc}) {
-    this.position = position
-    this.scale = scale
-    this.image = new Image()
-    this.image.src = imageSrc
-  }
-
-  draw() {
-    c.drawImage(this.image, this.position.x, this.position.y, this.scale.width, this.scale.height )
-    
-  }
-}
-
-class CollisionBlock {
-  constructor( {position} ) {
-    this.position = position
-    this.width = 32,
-    this.height = 32  
-  }
-
-  draw() {
-    c.fillStyle = 'rgba(255,0,0,0.0'
-    c.fillRect(this.position.x, this.position.y, this.width, this.height)
   }
 }

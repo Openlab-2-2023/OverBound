@@ -12,6 +12,7 @@ const collisionBlocks = parsedCollisions.createObjectsFrom2D();
 const player = new Player({
   collisionBlocks,
 });
+const kolagen = new Kolagen()
 const background = new Sprite({
   position: {
     x: 0,
@@ -44,8 +45,6 @@ let keys = {
   },
 };
 
-let kolagenbar = -70;
-
 function animate() {
   window.requestAnimationFrame(animate);
   background.draw();
@@ -54,25 +53,18 @@ function animate() {
   });
 
   player.velocity.x = 0;
-
-  c.fillStyle = "gray";
-  c.fillRect(50, 50, 10, 70);
-  const grad = c.createLinearGradient(2, 0, 36, 100);
-  grad.addColorStop(0.5, "#ff8d00");
-  grad.addColorStop(1, "#020024");
-  c.fillStyle = grad;
-  c.fillRect(50, 120, 10, kolagenbar); //farba kolagenbaru + vyska & sirka
-
+  
+ //movement (A , D , kolagenbar charge)
   if (keys.d.pressed) {
     player.velocity.x = 5;
   } else if (keys.a.pressed) {
     player.velocity.x = -5;
   } else if (keys.p.pressed) {
-    if (kolagenbar > -70) {
-      kolagenbar = kolagenbar - 1; //movement (A , D , kolagenbar charge)
+    if (kolagen.kolagenbar > -70) {
+      kolagen.kolagenbar = kolagen.kolagenbar - 1;
     }
   }
-
+  kolagen.draw()
   player.draw();
   player.update();
 }
@@ -87,7 +79,6 @@ window.addEventListener("keydown", (event) => {
     case "KeyA":
       //move left (A)
       keys.a.pressed = true;
-
       break;
     case "KeyS":
       //duckujes
@@ -99,19 +90,16 @@ window.addEventListener("keydown", (event) => {
       break;
     case "Space":
     case "KeyW":
-      if (keys.s.pressed) {
-        if (player.velocity.y == 0) {
-          if (kolagenbar <= -28) {
-            player.velocity.y = -25;
-            kolagenbar = kolagenbar + 28; //velky jump
-          }
-        }
+
+       //velky jump
+      if(keys.s.pressed && player.velocity.y == 0 && kolagen.kolagenbar <= -28) {
+        player.velocity.y = -25;
+        kolagen.kolagenbar = kolagen.kolagenbar + 28;
       }
-      if (player.velocity.y == 0) {
-        if (kolagenbar <= -14) {
-          player.velocity.y = -17;
-          kolagenbar = kolagenbar + 14; //maly jump
-        }
+      //maly jump
+      if(player.velocity.y == 0 && kolagen.kolagenbar <= -14) {
+        player.velocity.y = -17;
+        kolagen.kolagenbar = kolagen.kolagenbar + 14;
       }
       break;
   }
