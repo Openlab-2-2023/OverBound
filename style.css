@@ -1,11 +1,13 @@
 body {
-  background-color: black;
+  background-color:rgb(2, 2, 2);
   margin: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   overflow: hidden;
+  flex-direction: column;
+  
 }
 
 html {
@@ -13,6 +15,36 @@ html {
 }
 
 .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.start{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: grey;
+  color: white;
+  border-style:ridge;
+  border-color: white;
+  border-radius: 8px;
+  border-width:10px;
+  box-shadow: 10px;
+  width:   400px;
+  height: 150px;
+  text-decoration: none;
+  font-size: 50px;
+  
+}
+img{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:20px;
+}
+.button-holder{
+  margin:auto ;
   display: flex;
   align-items: center;
   justify-content: center;
