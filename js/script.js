@@ -55,6 +55,8 @@ function animate() {
   player.velocity.x = 0;
   
  //movement (A , D , kolagenbar charge)
+ if(keys.s.pressed == false) {
+
   if (keys.d.pressed) {
     player.velocity.x = 5;
   } else if (keys.a.pressed) {
@@ -64,6 +66,7 @@ function animate() {
       kolagen.kolagenbar = kolagen.kolagenbar - 1;
     }
   }
+ }
   kolagen.draw()
   player.draw();
   player.update();
@@ -90,11 +93,12 @@ window.addEventListener("keydown", (event) => {
       break;
     case "Space":
     case "KeyW":
-
+      
        //velky jump
       if(keys.s.pressed && player.velocity.y == 0 && kolagen.kolagenbar <= -28) {
         player.velocity.y = -25;
         kolagen.kolagenbar = kolagen.kolagenbar + 28;
+        keys.s.pressed = false
       }
       //maly jump
       if(player.velocity.y == 0 && kolagen.kolagenbar <= -14) {
