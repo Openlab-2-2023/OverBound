@@ -2,12 +2,12 @@ class Player {
   constructor ({
     collisionBlocks = []
   }) {
-    
+    //spawnovacia pozicia
     this.position = {
       x:100,
       y:100
     }
-
+//velkost hraca
     this.width = 30
     this.height = 40
 
@@ -26,6 +26,7 @@ class Player {
     console.log(this.collisionBlocks)
 
   }
+  //ako vyzera ten hlupak
   draw() {
     c.fillStyle = 'red'
     c.fillRect(this.position.x, this.position.y, this.width, this.height);

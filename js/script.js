@@ -23,7 +23,7 @@ const background = new Sprite({
     width: canvas.width,
     height: canvas.height,
   },
-
+//obrazok levelu
   imageSrc: "./sprites/level1.png",
 });
 

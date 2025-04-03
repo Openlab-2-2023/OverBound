@@ -15,7 +15,7 @@ class Kolagen {
     const grad = c.createLinearGradient(2, 0, 36, 100);
     grad.addColorStop(0.5, "#ff8d00");
     grad.addColorStop(1, "#020024");
-    c.fillStyle = grad;
+    c.fillStyle = grad;//az po tialto je farbicka 
     c.fillRect(this.position.x, this.position.y, this.width, this.kolagenbar); //pozicia, vyska, sirka kolagen baru
   }
 }
