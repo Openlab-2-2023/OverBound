@@ -23,9 +23,9 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  background:linear-gradient(0deg,grey,rgb(71, 71, 71));
+  background:black;
   color: white;
-  border-style:ridge;
+  
   border-color: white;
   border-radius: 8px;
   border-width:20px;
@@ -37,7 +37,8 @@ html {
   padding: 10px;
   font-family: "Pixelify Sans", sans-serif;
   font-weight:500;
-   transition: transform 0.3s ease-in-out;
+   transition: color 0.3s;
+   
 } 
 img{
   width: 50%;
@@ -45,14 +46,19 @@ img{
   align-items: center;
   justify-content: center;
   margin:20px;
+  margin-bottom:3 %;
 }
 .button-holder{
-  margin:auto ;
+  margin-bottom:50px ;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .start:hover{
 transform: scale(1.05);
-transition:300ms ;
+transition:300ms;
+background:linear-gradient(90deg,orange ,blue);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
 }
