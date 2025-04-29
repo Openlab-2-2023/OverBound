@@ -11,7 +11,11 @@ const collisionBlocks = parsedCollisions.createObjectsFrom2D();
 
 const player = new Player({
   collisionBlocks,
+  imageSrc: './sprites/character/idle.png',
+  frameRate: 4
 });
+
+
 const kolagen = new Kolagen()
 const background = new Sprite({
   position: {
