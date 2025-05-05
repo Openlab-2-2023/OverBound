@@ -12,10 +12,48 @@ const collisionBlocks = parsedCollisions.createObjectsFrom2D();
 const player = new Player({
   collisionBlocks,
   imageSrc: './sprites/character/idle.png',
-  frameRate: 4
+  frameRate: 4,
+  animations: {
+    idleRight: {
+      frameRate: 4,
+      frameBuffer: 14,
+      loop: true,
+      imageSrc: './sprites/character/idle.png'
+    },
+
+    idleLeft: {
+      frameRate: 4,
+      frameBuffer: 14,
+      loop: true,
+      imageSrc: './sprites/character/idleleft.png'
+    },
+
+    runRight: {
+      frameRate: 8,
+      frameBuffer: 4,
+      loop: true,
+      imageSrc: './sprites/character/runright.png'
+
+    },
+
+    runLeft: {
+      frameRate: 8,
+      frameBuffer: 4,
+      loop: true,
+      imageSrc: './sprites/character/runleft.png'
+    },
+
+    crouch: {
+      frameRate: 4,
+      frameBuffer: 4,
+      loop: false,
+      imageSrc: './sprites/character/crouch.png'
+    },
+
+  }
 });
 
-
+ 
 const kolagen = new Kolagen()
 const background = new Sprite({
   position: {
@@ -23,10 +61,7 @@ const background = new Sprite({
     y: 0,
   },
 
-  scale: {
-    width: canvas.width,
-    height: canvas.height,
-  },
+  
 //obrazok levelu
   imageSrc: "./sprites/level1.png",
 });
@@ -47,6 +82,9 @@ let keys = {
   w: {
     pressed: false,
   },
+  o: {
+    pressed: false
+  }
 };
 
 function animate() {
@@ -69,7 +107,7 @@ function animate() {
     if (kolagen.kolagenbar > -70) {
       kolagen.kolagenbar = kolagen.kolagenbar - 1;
     }
-  }
+  } 
  }
   kolagen.draw()
   player.draw();
@@ -82,14 +120,17 @@ window.addEventListener("keydown", (event) => {
     case "KeyD":
       // move right (D)
       keys.d.pressed = true;
+      player.switchSprite('runRight')
       break;
     case "KeyA":
       //move left (A)
       keys.a.pressed = true;
+      player.switchSprite("runLeft")
       break;
     case "KeyS":
-      //duckujes
+      //duckujes 
       keys.s.pressed = true;
+      player.switchSprite("crouch")
       break;
     case "KeyP":
       //charge kolagenbar
@@ -117,9 +158,11 @@ window.addEventListener("keyup", (event) => {
   switch (event.code) {
     case "KeyD":
       keys.d.pressed = false;
+      player.switchSprite("idleRight")
       break;
     case "KeyA":
       keys.a.pressed = false;
+      player.switchSprite("idleLeft")
       break;
     case "KeyP":
       keys.p.pressed = false;
@@ -130,5 +173,7 @@ window.addEventListener("keyup", (event) => {
     case "KeyW":
       keys.w.pressed = false;
       break;
+      
   }
 });
+
