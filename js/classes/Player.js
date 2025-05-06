@@ -3,9 +3,11 @@ class Player extends Sprite  {
     collisionBlocks = [],
     imageSrc,
     frameRate,
-    animations
+    animations,
+    loop,
+    lastDirection
   }) {
-    super({imageSrc, frameRate, animations})
+    super({imageSrc, frameRate, animations,loop, lastDirection})
     //spawnovacia pozicia
     this.position = {
       x:100,
@@ -24,6 +26,7 @@ class Player extends Sprite  {
     this.gravity = 1
 
     this.collisionBlocks = collisionBlocks
+    
      
   }
   
@@ -46,6 +49,7 @@ class Player extends Sprite  {
     this.image = this.animations[name].image
     this.frameRate = this.animations[name].frameRate
     this.frameBuffer = this.animations[name].frameBuffer
+    this.loop = this.animations[name].loop 
   }
 
   updateHitBox() {

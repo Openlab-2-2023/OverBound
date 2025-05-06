@@ -49,7 +49,12 @@ const player = new Player({
       loop: false,
       imageSrc: './sprites/character/crouch.png'
     },
-
+    charge: {
+      frameRate: 4,
+      frameBuffer: 4,
+      loop: true,
+      imageSrc: './sprites/character/charge.png'
+    },
   }
 });
 
@@ -106,6 +111,7 @@ function animate() {
   } else if (keys.p.pressed) {
     if (kolagen.kolagenbar > -70) {
       kolagen.kolagenbar = kolagen.kolagenbar - 1;
+      player.switchSprite('charge')
     }
   } 
  }
@@ -130,7 +136,7 @@ window.addEventListener("keydown", (event) => {
     case "KeyS":
       //duckujes 
       keys.s.pressed = true;
-      player.switchSprite("crouch")
+      player.switchSprite('crouch')
       break;
     case "KeyP":
       //charge kolagenbar
@@ -166,10 +172,10 @@ window.addEventListener("keyup", (event) => {
       break;
     case "KeyP":
       keys.p.pressed = false;
+      player.switchSprite('idleRight')
       break;
     case "KeyS":
       keys.s.pressed = false;
-      break;
     case "KeyW":
       keys.w.pressed = false;
       break;
