@@ -1,5 +1,5 @@
 class Sprite {
-  constructor ({position,frameRate = 1, imageSrc, animations, loop, lastDirection}) {
+  constructor ({position,frameRate = 1, imageSrc, animations, loop, lastDirection, frameBuffer = 14}) {
     this.position = position
     this.image = new Image()
     this.image.onload = () => {
@@ -12,7 +12,7 @@ class Sprite {
     this.frameRate = frameRate
     this.currentFrame = 0
     this.elapsedFrames = 0
-    this.frameBuffer = 14
+    this.frameBuffer = frameBuffer 
     this.animations = animations
     this.loop = loop
     this.lastDirection = lastDirection

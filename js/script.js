@@ -13,6 +13,7 @@ const player = new Player({
   collisionBlocks,
   imageSrc: './sprites/character/idle.png',
   frameRate: 4,
+  loop: true,
   animations: {
     idleRight: {
       frameRate: 4,
@@ -49,14 +50,39 @@ const player = new Player({
       loop: false,
       imageSrc: './sprites/character/crouch.png'
     },
-    charge: {
+    crouchLeft: {
       frameRate: 4,
       frameBuffer: 4,
+      loop: false,
+      imageSrc: './sprites/character/crouchleft.png'
+    },
+    charge: {
+      frameRate: 4,
+      frameBuffer: 6,
       loop: true,
       imageSrc: './sprites/character/charge.png'
     },
+    chargeLeft: {
+      frameRate: 4,
+      frameBuffer: 6,
+      loop: true,
+      imageSrc: './sprites/character/chargeleft.png'
+    },
   }
 });
+
+const portals = [
+  new Sprite ({
+    position: {
+      x:920,
+      y:115
+    },
+    imageSrc: './sprites/other/portal.png',
+    frameRate: 6,
+    frameBuffer: 8,
+    loop:true
+  })
+]
 
  
 const kolagen = new Kolagen()
@@ -99,6 +125,9 @@ function animate() {
     CollisionBlock.draw();
   });
 
+  portals.forEach((portal) => {
+    portal.draw();
+  });
   player.velocity.x = 0;
   
  //movement (A , D , kolagenbar charge)
@@ -106,14 +135,38 @@ function animate() {
 
   if (keys.d.pressed) {
     player.velocity.x = 5;
+    if(!keys.s.pressed) {
+      player.switchSprite('runRight')
+      player.lastDirection = 'right'
+      }
   } else if (keys.a.pressed) {
     player.velocity.x = -5;
-  } else if (keys.p.pressed) {
+    if(!keys.s.pressed) {
+      player.switchSprite('runLeft')
+      player.lastDirection = 'left'
+    }
+  } else if (keys.p.pressed && !keys.d.pressed && !keys.a.pressed) {
     if (kolagen.kolagenbar > -70) {
       kolagen.kolagenbar = kolagen.kolagenbar - 1;
-      player.switchSprite('charge')
+      if(player.lastDirection === 'right') {
+        player.switchSprite('charge')
+      } else if(player.lastDirection === 'left') {
+        player.switchSprite('chargeLeft')
+      }
+    } else {
+      if(player.lastDirection === 'right') {
+        player.switchSprite('idleRight')
+      } else if(player.lastDirection === 'left') {
+        player.switchSprite('idleLeft')
+      }
     }
   } 
+ } else {
+  if(player.lastDirection === 'right') {
+    player.switchSprite('crouch')
+  } else if(player.lastDirection === 'left') {
+    player.switchSprite('crouchLeft')
+  }
  }
   kolagen.draw()
   player.draw();
@@ -126,26 +179,23 @@ window.addEventListener("keydown", (event) => {
     case "KeyD":
       // move right (D)
       keys.d.pressed = true;
-      player.switchSprite('runRight')
       break;
     case "KeyA":
       //move left (A)
       keys.a.pressed = true;
-      player.switchSprite("runLeft")
       break;
     case "KeyS":
       //duckujes 
       keys.s.pressed = true;
-      player.switchSprite('crouch')
       break;
     case "KeyP":
       //charge kolagenbar
       keys.p.pressed = true;
+        
       break;
     case "Space":
     case "KeyW":
       
-       //velky jump
       if(keys.s.pressed && player.velocity.y == 0 && kolagen.kolagenbar <= -28) {
         player.velocity.y = -25;
         kolagen.kolagenbar = kolagen.kolagenbar + 28;
@@ -164,22 +214,31 @@ window.addEventListener("keyup", (event) => {
   switch (event.code) {
     case "KeyD":
       keys.d.pressed = false;
-      player.switchSprite("idleRight")
+      player.switchSprite('idleRight')
       break;
     case "KeyA":
       keys.a.pressed = false;
-      player.switchSprite("idleLeft")
+      player.switchSprite('idleLeft')
       break;
     case "KeyP":
       keys.p.pressed = false;
-      player.switchSprite('idleRight')
+      if(player.lastDirection === 'right') {
+        player.switchSprite('idleRight')
+      } else if(player.lastDirection === 'left') {
+        player.switchSprite('idleLeft')
+      }
       break;
     case "KeyS":
       keys.s.pressed = false;
+      if(player.lastDirection === 'right') {
+        player.switchSprite('idleRight')
+      } else if(player.lastDirection === 'left') {
+        player.switchSprite('idleLeft')
+      }
+
     case "KeyW":
       keys.w.pressed = false;
       break;
       
   }
 });
-

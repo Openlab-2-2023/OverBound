@@ -94,7 +94,7 @@ class Player extends Sprite  {
   }
 
   checkForVerticalCollisions() {
-    //vertikalne kolizie (gravitacia)
+    //vertikalne kolizie
     for(let i = 0; i < this.collisionBlocks.length; i++) {
       const collisionBlock = this.collisionBlocks[i]
 
