@@ -49,7 +49,8 @@ class Player extends Sprite  {
     this.image = this.animations[name].image
     this.frameRate = this.animations[name].frameRate
     this.frameBuffer = this.animations[name].frameBuffer
-    this.loop = this.animations[name].loop 
+    this.loop = this.animations[name].loop
+    this.currentAnimation = this.animations[name]
   }
 
   updateHitBox() {
@@ -92,6 +93,7 @@ class Player extends Sprite  {
     this.velocity.y += this.gravity
     this.position.y += this.velocity.y
   }
+
 
   checkForVerticalCollisions() {
     //vertikalne kolizie

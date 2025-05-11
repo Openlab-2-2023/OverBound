@@ -1,4 +1,3 @@
-//velkost kolizii
 class CollisionBlock {
   constructor( {position} ) {
     this.position = position

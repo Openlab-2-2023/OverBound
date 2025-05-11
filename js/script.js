@@ -6,11 +6,83 @@ const c = canvas.getContext("2d");
 canvas.width = 1024;
 canvas.height = 596;
 
-const parsedCollisions = level1Collisions.Parse2D();
-const collisionBlocks = parsedCollisions.createObjectsFrom2D();
+let background
+let parsedCollisions
+let collisionBlocks
+let portals
+const overlay = {
+  opacity: 0
+}
+const kolagen = new Kolagen()
+let level = 1
+let levels = {
+  1: {
+    init: () => {
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+
+      //obrazok levelu
+        imageSrc: "./sprites/levels/level1.png",
+      });
+      
+      parsedCollisions = level1Collisions.Parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
+      player.collisionBlocks = collisionBlocks
+      portals = [
+        new Sprite ({
+          position: {
+            x:920,
+            y:115
+          },
+          imageSrc: './sprites/other/portal.png',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+    }
+  },
+
+  2: {
+    init: () => {
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+      
+        
+      //obrazok levelu
+        imageSrc: "./sprites/levels/level2.png",
+      });
+      
+      parsedCollisions = level2Collisions.Parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
+      player.collisionBlocks = collisionBlocks
+      player.position.x = 50
+      player.position.y = 350
+      portals = [
+        new Sprite ({
+          position: {
+            x:860,
+            y:48
+          },
+          imageSrc: './sprites/other/portal.png',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+    }
+  }
+}
+
+
 
 const player = new Player({
-  collisionBlocks,
   imageSrc: './sprites/character/idle.png',
   frameRate: 4,
   loop: true,
@@ -68,34 +140,28 @@ const player = new Player({
       loop: true,
       imageSrc: './sprites/character/chargeleft.png'
     },
+    perish: {
+      frameRate: 3,
+      frameBuffer: 10,
+      loop: false,
+      imageSrc: './sprites/character/perish.png',
+      onComplete: () => {
+        gsap.to(overlay, {
+          opacity: 1,
+          onComplete: () => {
+            level++
+            levels[level].init()
+            gsap.to(overlay, {
+              opacity: 0
+            })
+            player.switchSprite('idleRight')
+          }
+        })
+      }
+    },
   }
 });
 
-const portals = [
-  new Sprite ({
-    position: {
-      x:920,
-      y:115
-    },
-    imageSrc: './sprites/other/portal.png',
-    frameRate: 6,
-    frameBuffer: 8,
-    loop:true
-  })
-]
-
- 
-const kolagen = new Kolagen()
-const background = new Sprite({
-  position: {
-    x: 0,
-    y: 0,
-  },
-
-  
-//obrazok levelu
-  imageSrc: "./sprites/level1.png",
-});
 
 let keys = {
   d: {
@@ -171,7 +237,13 @@ function animate() {
   kolagen.draw()
   player.draw();
   player.update();
+  c.save()
+  c.globalAlpha = overlay.opacity
+  c.fillStyle = 'black'
+  c.fillRect(0,0,canvas.width, canvas.height)
+  c.restore()
 }
+levels[level].init()
 animate();
 
 window.addEventListener("keydown", (event) => {
@@ -197,7 +269,7 @@ window.addEventListener("keydown", (event) => {
     case "KeyW":
       
       if(keys.s.pressed && player.velocity.y == 0 && kolagen.kolagenbar <= -28) {
-        player.velocity.y = -25;
+        player.velocity.y = -20;
         kolagen.kolagenbar = kolagen.kolagenbar + 28;
         keys.s.pressed = false
       }
@@ -206,7 +278,22 @@ window.addEventListener("keydown", (event) => {
         player.velocity.y = -17;
         kolagen.kolagenbar = kolagen.kolagenbar + 14;
       }
+
       break;
+
+      case "KeyE":
+
+    for(let i = 0; i < portals.length; i++) {
+      const portal = portals[i]
+      if(player.hitbox.position.x <= portal.position.x + portal.width &&
+        player.hitbox.position.x + player.hitbox.width >= portal.position.x &&
+        player.hitbox.position.y + player.hitbox.height >= portal.position.y &&
+        player.hitbox.position.y <= portal.position.y + portal.height) {
+          player.switchSprite('perish')
+        } 
+    }
+      break;
+    
   }
 });
 
