@@ -25,7 +25,7 @@ const overlay = {
 const kolagen = new Kolagen()
 let level = 1
 let levels = {
-  1: {
+  1: { //odtialto kopiruj
     init: () => {
       background = new Sprite({
         position: {
@@ -34,21 +34,21 @@ let levels = {
         },
 
       //obrazok levelu
-        imageSrc: "./sprites/levels/level1.png",
+        imageSrc: "./sprites/levels/level1.png", //toto sa meni
       });
       
       parsedCollisions = level1Collisions.Parse2D();
       collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
       player.collisionBlocks = collisionBlocks
       player.position.x = 200
-      player.position.y = 350
+      player.position.y = 350 //position sa meni
       portals = [
         new Sprite ({
           position: {
             x:920,
             y:80
           },
-          imageSrc: './sprites/other/portal.png',
+          imageSrc: './sprites/other/portal.png',//position sa meni + cesta
           frameRate: 6,
           frameBuffer: 8,
           loop:true
