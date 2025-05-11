@@ -121,4 +121,48 @@ class Player extends Sprite  {
       }
     }
   }
+
+playerMovement(keys) {
+  if (!keys.s.pressed) {
+    if(currentDifficulty === 'normal') {
+      if (keys.d.pressed) {
+      this.movePlayer(5.5, 'runRight', 'right');
+    } else if (keys.a.pressed) {
+      this.movePlayer(-5.5, 'runLeft', 'left');
+    } else if (keys.p.pressed && !keys.d.pressed && !keys.a.pressed) {
+      this.chargePlayer();
+    } 
+    } else {
+      if (keys.d.pressed) {
+      this.movePlayer(4.5, 'runRight', 'right');
+    } else if (keys.a.pressed) {
+      this.movePlayer(-4.5, 'runLeft', 'left');
+    } else if (keys.p.pressed && !keys.d.pressed && !keys.a.pressed) {
+      this.chargePlayer();
+    } 
+    }
+  } else {
+    this.crouchPlayer();
+  }
+}
+
+movePlayer(velocity, sprite, direction) {
+  player.velocity.x = velocity;
+  player.switchSprite(sprite);
+  player.lastDirection = direction;
+}
+
+chargePlayer() {
+  if (kolagen.kolagenbar > -70) {
+    kolagen.kolagenbar--;
+    player.switchSprite(player.lastDirection === 'right' ? 'charge' : 'chargeLeft');
+  } else {
+    player.switchSprite(player.lastDirection === 'right' ? 'idleRight' : 'idleLeft');
+  }
+}
+
+crouchPlayer() {
+  player.switchSprite(player.lastDirection === 'right' ? 'crouch' : 'crouchLeft');
+}
+
 }

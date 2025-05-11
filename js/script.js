@@ -6,6 +6,15 @@ const c = canvas.getContext("2d");
 canvas.width = 1024;
 canvas.height = 596;
 
+let currentDifficulty = 'normal';
+document.querySelector('.difficulty').addEventListener('click', (event) => {
+    if (event.target.tagName === 'B') {
+        currentDifficulty = event.target.textContent;
+        console.log(`Selected difficulty: ${event.target.textContent}`);
+        
+    }
+});
+
 let background
 let parsedCollisions
 let collisionBlocks
@@ -31,11 +40,13 @@ let levels = {
       parsedCollisions = level1Collisions.Parse2D();
       collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
       player.collisionBlocks = collisionBlocks
+      player.position.x = 200
+      player.position.y = 350
       portals = [
         new Sprite ({
           position: {
             x:920,
-            y:115
+            y:80
           },
           imageSrc: './sprites/other/portal.png',
           frameRate: 6,
@@ -67,8 +78,8 @@ let levels = {
       portals = [
         new Sprite ({
           position: {
-            x:860,
-            y:48
+            x:930,
+            y:110
           },
           imageSrc: './sprites/other/portal.png',
           frameRate: 6,
@@ -77,7 +88,8 @@ let levels = {
         })
       ]
     }
-  }
+  },
+
 }
 
 
@@ -180,8 +192,8 @@ let keys = {
     pressed: false,
   },
   o: {
-    pressed: false
-  }
+    pressed: false,
+  },
 };
 
 function animate() {
@@ -196,44 +208,7 @@ function animate() {
   });
   player.velocity.x = 0;
   
- //movement (A , D , kolagenbar charge)
- if(keys.s.pressed == false) {
-
-  if (keys.d.pressed) {
-    player.velocity.x = 5;
-    if(!keys.s.pressed) {
-      player.switchSprite('runRight')
-      player.lastDirection = 'right'
-      }
-  } else if (keys.a.pressed) {
-    player.velocity.x = -5;
-    if(!keys.s.pressed) {
-      player.switchSprite('runLeft')
-      player.lastDirection = 'left'
-    }
-  } else if (keys.p.pressed && !keys.d.pressed && !keys.a.pressed) {
-    if (kolagen.kolagenbar > -70) {
-      kolagen.kolagenbar = kolagen.kolagenbar - 1;
-      if(player.lastDirection === 'right') {
-        player.switchSprite('charge')
-      } else if(player.lastDirection === 'left') {
-        player.switchSprite('chargeLeft')
-      }
-    } else {
-      if(player.lastDirection === 'right') {
-        player.switchSprite('idleRight')
-      } else if(player.lastDirection === 'left') {
-        player.switchSprite('idleLeft')
-      }
-    }
-  } 
- } else {
-  if(player.lastDirection === 'right') {
-    player.switchSprite('crouch')
-  } else if(player.lastDirection === 'left') {
-    player.switchSprite('crouchLeft')
-  }
- }
+  player.playerMovement(keys)
   kolagen.draw()
   player.draw();
   player.update();
@@ -269,14 +244,26 @@ window.addEventListener("keydown", (event) => {
     case "KeyW":
       
       if(keys.s.pressed && player.velocity.y == 0 && kolagen.kolagenbar <= -28) {
-        player.velocity.y = -20;
-        kolagen.kolagenbar = kolagen.kolagenbar + 28;
+        if(currentDifficulty === 'normal') {
+          player.velocity.y = -22;
+          kolagen.kolagenbar = kolagen.kolagenbar + 28;
+        } else {
+          player.velocity.y = -20;
+          kolagen.kolagenbar = kolagen.kolagenbar + 28;
+        }
+        
         keys.s.pressed = false
       }
       //maly jump
       if(player.velocity.y == 0 && kolagen.kolagenbar <= -14) {
-        player.velocity.y = -17;
-        kolagen.kolagenbar = kolagen.kolagenbar + 14;
+        if(currentDifficulty === 'normal') {
+          player.velocity.y = -17;
+          kolagen.kolagenbar = kolagen.kolagenbar + 14;
+        } else {
+          player.velocity.y = -17;
+          kolagen.kolagenbar = kolagen.kolagenbar + 14;
+        }
+        
       }
 
       break;
@@ -293,9 +280,9 @@ window.addEventListener("keydown", (event) => {
         } 
     }
       break;
-    
   }
 });
+
 
 window.addEventListener("keyup", (event) => {
   switch (event.code) {
@@ -325,6 +312,10 @@ window.addEventListener("keyup", (event) => {
 
     case "KeyW":
       keys.w.pressed = false;
+      break;
+
+    case "KeyO":
+      keys.o.pressed = true
       break;
       
   }
