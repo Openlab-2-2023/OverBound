@@ -26,8 +26,10 @@ class Player extends Sprite  {
     this.gravity = 1
 
     this.collisionBlocks = collisionBlocks
-    
-     
+    this.canDash = true
+
+    this.lastDashTime = 0
+    this.dashCooldown = 1000
   }
   
 
@@ -95,6 +97,7 @@ class Player extends Sprite  {
   }
 
 
+
   checkForVerticalCollisions() {
     //vertikalne kolizie
     for(let i = 0; i < this.collisionBlocks.length; i++) {
@@ -127,10 +130,18 @@ playerMovement(keys) {
     if(currentDifficulty === 'normal') {
       if (keys.d.pressed) {
       this.movePlayer(5.5, 'runRight', 'right');
+      if(keys.o.pressed) {
+        this.dash()
+      }
     } else if (keys.a.pressed) {
       this.movePlayer(-5.5, 'runLeft', 'left');
+      if(keys.o.pressed) {
+        this.dash()
+      }
     } else if (keys.p.pressed && !keys.d.pressed && !keys.a.pressed) {
       this.chargePlayer();
+    }  else if(keys.o.pressed) {
+      this.dash()
     } 
     } else {
       if (keys.d.pressed) {
@@ -165,4 +176,13 @@ crouchPlayer() {
   player.switchSprite(player.lastDirection === 'right' ? 'crouch' : 'crouchLeft');
 }
 
+
+  dash() {
+  player.velocity.x = player.lastDirection === 'right' ? 20 : -20
+
+  setTimeout(() => {
+    player.velocity.x = 0;
+    keys.o.pressed = false;
+  }, 100);
+}
 }
