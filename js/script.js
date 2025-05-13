@@ -19,6 +19,7 @@ let background
 let parsedCollisions
 let collisionBlocks
 let portals
+let animals
 const overlay = {
   opacity: 0
 }
@@ -34,7 +35,8 @@ let levels = {
         },
 
       //obrazok levelu
-        imageSrc: "./sprites/levels/level1.png", //toto sa meni
+      imageSrc: './sprites/levels/level1.png',//position sa meni + cesta
+
       });
       
       parsedCollisions = level1Collisions.Parse2D();
@@ -50,6 +52,18 @@ let levels = {
           },
           imageSrc: './sprites/other/portal.png',//position sa meni + cesta
           frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+      animals = [
+        new Sprite ({
+          position: {
+            x:0,
+            y:0
+          },
+          imageSrc: '',
+          frameRate: 4,
           frameBuffer: 8,
           loop:true
         })
@@ -87,6 +101,18 @@ let levels = {
           loop:true
         })
       ]
+      animals = [
+        new Sprite ({
+          position: {
+            x:0,
+            y:0
+          },
+          imageSrc: '',
+          frameRate: 4,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
     }
   },
 3: {
@@ -119,6 +145,18 @@ let levels = {
           loop:true
         })
       ]
+      animals = [
+        new Sprite ({
+          position: {
+            x:0,
+            y:0
+          },
+          imageSrc: '',
+          frameRate: 4,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
     }
   },
   4: {
@@ -142,12 +180,25 @@ let levels = {
       portals = [
         new Sprite ({
           position: {
-            x:90,
-            y:50
+            x:920,
+            y:45
           },
           imageSrc: './sprites/other/portal.png',
           frameRate: 6,
           frameBuffer: 8,
+          loop:true
+        })
+      ]
+
+      animals = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:324
+          },
+          imageSrc: './sprites/bird/idle.png',
+          frameRate: 4,
+          frameBuffer: 12,
           loop:true
         })
       ]
@@ -266,10 +317,16 @@ function animate() {
   collisionBlocks.forEach((CollisionBlock) => {
     CollisionBlock.draw();
   });
+  
 
   portals.forEach((portal) => {
     portal.draw();
   });
+
+  animals.forEach((animal) => {
+    animal.draw();
+  });
+
   player.velocity.x = 0;
 
   player.playerMovement(keys)
