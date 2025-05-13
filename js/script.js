@@ -343,7 +343,6 @@ window.addEventListener("keyup", (event) => {
       } else if(player.lastDirection === 'left') {
         player.switchSprite('idleLeft')
       }
-
     case "KeyW":
       keys.w.pressed = false;
       break;
@@ -354,6 +353,7 @@ window.addEventListener("keyup", (event) => {
 
 window.addEventListener('keydown', (event) => {
   if (event.repeat) return;
+  
 
   switch(event.code) {
     case "KeyO":

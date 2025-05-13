@@ -152,9 +152,15 @@ playerMovement(keys) {
       this.chargePlayer();
     } 
     }
-  } else {
+  } else if(keys.s.pressed) {
     this.crouchPlayer();
-  }
+    if(keys.o.pressed) {
+      player.dash()
+      player.switchSprite(player.lastDirection === 'right' ? 'idleRight' : 'idleLeft')
+    }
+  } 
+
+  
 }
 
 movePlayer(velocity, sprite, direction) {
@@ -178,7 +184,7 @@ crouchPlayer() {
 
 
   dash() {
-  player.velocity.x = player.lastDirection === 'right' ? 20 : -20
+  player.velocity.x = player.lastDirection === 'right' ? 18 : -18
 
   setTimeout(() => {
     player.velocity.x = 0;
