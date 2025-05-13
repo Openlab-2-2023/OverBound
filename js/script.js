@@ -121,7 +121,40 @@ let levels = {
       ]
     }
   },
+  4: {
+    init: () => {
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+      
+        
+      //obrazok levelu
+        imageSrc: "./sprites/levels/level4.png",
+      });
+      
+      parsedCollisions = level4Collisions.Parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
+      player.collisionBlocks = collisionBlocks
+      player.position.x = 50
+      player.position.y = 350
+      portals = [
+        new Sprite ({
+          position: {
+            x:90,
+            y:50
+          },
+          imageSrc: './sprites/other/portal.png',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+    }
+  },
 }
+
 
 
 
