@@ -18,4 +18,10 @@ class Kolagen {
     c.fillStyle = grad;//az po tialto je farbicka 
     c.fillRect(this.position.x, this.position.y, this.width, this.kolagenbar); //pozicia, vyska, sirka kolagen baru
   }
+
+  refill() {
+    if(this.kolagenbar > -70) {
+      this.kolagenbar -= 0.35
+    }
+  }
 }

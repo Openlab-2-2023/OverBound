@@ -168,7 +168,7 @@ movePlayer(velocity, sprite, direction) {
   player.switchSprite(sprite);
   player.lastDirection = direction;
 }
-
+/*
 chargePlayer() {
   if (kolagen.kolagenbar > -70) {
     kolagen.kolagenbar--;
@@ -177,7 +177,7 @@ chargePlayer() {
     player.switchSprite(player.lastDirection === 'right' ? 'idleRight' : 'idleLeft');
   }
 }
-
+*/
 crouchPlayer() {
   player.switchSprite(player.lastDirection === 'right' ? 'crouch' : 'crouchLeft');
 }
@@ -185,7 +185,6 @@ crouchPlayer() {
 
   dash() {
   player.velocity.x = player.lastDirection === 'right' ? 18 : -18
-
   setTimeout(() => {
     player.velocity.x = 0;
     keys.o.pressed = false;

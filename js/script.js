@@ -331,6 +331,7 @@ function animate() {
 
   player.playerMovement(keys)
   kolagen.draw()
+  kolagen.refill()
   player.draw();
   player.update();
   c.save()
@@ -356,11 +357,13 @@ window.addEventListener("keydown", (event) => {
       //duckujes 
       keys.s.pressed = true;
       break;
+      /*
     case "KeyP":
       //charge kolagenbar
       keys.p.pressed = true;
         
       break;
+      */
     case "Space":
     case "KeyW":
       
@@ -443,12 +446,12 @@ window.addEventListener("keyup", (event) => {
 
 window.addEventListener('keydown', (event) => {
   if (event.repeat) return;
-  
-
   switch(event.code) {
     case "KeyO":
-      keys.o.pressed = true
-      console.log('dash')
+      if(kolagen.kolagenbar <= -28) {
+        keys.o.pressed = true
+        kolagen.kolagenbar = kolagen.kolagenbar + 28;
+      }
       break;
   }
 });
