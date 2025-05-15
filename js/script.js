@@ -20,6 +20,7 @@ let parsedCollisions
 let collisionBlocks
 let portals
 let animals
+let risks
 const overlay = {
   opacity: 0
 }
@@ -68,6 +69,19 @@ let levels = {
           loop:true
         })
       ]
+
+      risks = [
+        new Sprite ({
+          position: {
+            x:700,
+            y:400
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
     }
   },
 
@@ -89,6 +103,10 @@ let levels = {
       player.collisionBlocks = collisionBlocks
       player.position.x = 50
       player.position.y = 350
+      player.levelSpawnPosition = {
+        x:50,
+        y:350
+      }
       portals = [
         new Sprite ({
           position: {
@@ -113,6 +131,31 @@ let levels = {
           loop:true
         })
       ]
+
+      risks = [
+        new Sprite ({
+          position: {
+            x:600,
+            y:445
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 27,
+          frameBuffer: 3,
+          loop:true
+        }),
+
+        new Sprite ({
+          position: {
+            x:150,
+            y:445
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 27,
+          frameBuffer: 3,
+          loop:true,
+        })
+      ]
+      
     }
   },
 3: {
@@ -157,6 +200,19 @@ let levels = {
           loop:true
         })
       ]
+
+      risks = [
+        new Sprite ({
+          position: {
+            x:700,
+            y:400
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
     }
   },
   4: {
@@ -187,6 +243,8 @@ let levels = {
           frameRate: 6,
           frameBuffer: 8,
           loop:true
+
+          
         })
       ]
 
@@ -199,6 +257,19 @@ let levels = {
           imageSrc: './sprites/bird/idle.png',
           frameRate: 4,
           frameBuffer: 12,
+          loop:true
+        })
+      ]
+
+      risks = [
+        new Sprite ({
+          position: {
+            x:700,
+            y:400
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
           loop:true
         })
       ]
@@ -257,7 +328,7 @@ const player = new Player({
     },
     charge: {
       frameRate: 4,
-      frameBuffer: 6,
+      frameBuffer: 1,
       loop: true,
       imageSrc: './sprites/character/charge.png'
     },
@@ -327,6 +398,12 @@ function animate() {
     animal.draw();
   });
 
+  risks.forEach((risk) => {
+    risk.draw();
+  });
+
+  
+
   player.velocity.x = 0;
 
   player.playerMovement(keys)
@@ -334,6 +411,7 @@ function animate() {
   kolagen.refill()
   player.draw();
   player.update();
+  player.detectRisk()
   c.save()
   c.globalAlpha = overlay.opacity
   c.fillStyle = 'black'
@@ -393,7 +471,6 @@ window.addEventListener("keydown", (event) => {
       break;
 
       case "KeyE":
-
     for(let i = 0; i < portals.length; i++) {
       const portal = portals[i]
       if(player.hitbox.position.x <= portal.position.x + portal.width &&

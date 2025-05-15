@@ -5,9 +5,11 @@ class Player extends Sprite  {
     frameRate,
     animations,
     loop,
-    lastDirection
+    lastDirection,
+    levelSpawnPosition
   }) {
-    super({imageSrc, frameRate, animations,loop, lastDirection})
+    super({imageSrc, frameRate, animations,loop, lastDirection,levelSpawnPosition
+})
     //spawnovacia pozicia
     this.position = {
       x:100,
@@ -132,11 +134,17 @@ playerMovement(keys) {
       this.movePlayer(5.5, 'runRight', 'right');
       if(keys.o.pressed) {
         this.dash()
+          if(!player.velocity.x == 0) {
+          //player.switchSprite('charge')
+        }
       }
     } else if (keys.a.pressed) {
       this.movePlayer(-5.5, 'runLeft', 'left');
       if(keys.o.pressed) {
         this.dash()
+        if(!player.velocity.x == 0) {
+        //player.switchSprite('charge')
+        }
       }
     } else if (keys.p.pressed && !keys.d.pressed && !keys.a.pressed) {
       this.chargePlayer();
@@ -183,11 +191,25 @@ crouchPlayer() {
 }
 
 
-  dash() {
+dash() {
   player.velocity.x = player.lastDirection === 'right' ? 18 : -18
   setTimeout(() => {
     player.velocity.x = 0;
     keys.o.pressed = false;
+    
   }, 100);
+}
+
+detectRisk() {
+    for(let i = 0; i < risks.length; i++) {
+      const risk = risks[i]
+      if(player.hitbox.position.x <= risk.position.x + risk.width &&
+        player.hitbox.position.x + player.hitbox.width >= risk.position.x &&
+        player.hitbox.position.y + player.hitbox.height >= risk.position.y &&
+        player.hitbox.position.y <= risk.position.y + risk.height) {
+          player.position.x = player.levelSpawnPosition.x
+          player.position.y = player.levelSpawnPosition.y
+        }
+  }
 }
 }
