@@ -62,3 +62,5 @@ window.addEventListener('keydown', (e) => { //soundy sa zapinaju podla toho ci s
     playNextTrackWithDelay();
   }
 });
+
+

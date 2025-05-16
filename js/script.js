@@ -21,11 +21,12 @@ let collisionBlocks
 let portals
 let animals
 let risks
+let clouds
 const overlay = {
   opacity: 0
 }
 const kolagen = new Kolagen()
-let level = 1
+let level = 3
 let levels = {
   1: { //odtialto kopiruj
     init: () => {
@@ -75,6 +76,18 @@ let levels = {
           position: {
             x:700,
             y:400
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+      clouds = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:300
           },
           imageSrc: '',
           frameRate: 6,
@@ -155,6 +168,19 @@ let levels = {
           loop:true,
         })
       ]
+
+      clouds = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:300
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
       
     }
   },
@@ -213,6 +239,19 @@ let levels = {
           loop:true
         })
       ]
+
+      clouds = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:300
+          },
+          imageSrc: './sprites/other/portal.png',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
     }
   },
   4: {
@@ -266,6 +305,19 @@ let levels = {
           position: {
             x:700,
             y:400
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+
+      clouds = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:300
           },
           imageSrc: '',
           frameRate: 6,
@@ -389,7 +441,6 @@ function animate() {
     CollisionBlock.draw();
   });
   
-
   portals.forEach((portal) => {
     portal.draw();
   });
@@ -397,12 +448,13 @@ function animate() {
   animals.forEach((animal) => {
     animal.draw();
   });
-
   risks.forEach((risk) => {
     risk.draw();
   });
 
-  
+  clouds.forEach((cloud) => {
+    cloud.draw();
+  });
 
   player.velocity.x = 0;
 
@@ -411,7 +463,10 @@ function animate() {
   kolagen.refill()
   player.draw();
   player.update();
+    player.detectCloud()
+
   player.detectRisk()
+
   c.save()
   c.globalAlpha = overlay.opacity
   c.fillStyle = 'black'

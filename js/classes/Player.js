@@ -1,6 +1,7 @@
 class Player extends Sprite  {
   constructor ({
     collisionBlocks = [],
+    clouds = [],
     imageSrc,
     frameRate,
     animations,
@@ -8,8 +9,7 @@ class Player extends Sprite  {
     lastDirection,
     levelSpawnPosition
   }) {
-    super({imageSrc, frameRate, animations,loop, lastDirection,levelSpawnPosition
-})
+    super({imageSrc, frameRate, animations,loop, lastDirection,levelSpawnPosition})
     //spawnovacia pozicia
     this.position = {
       x:100,
@@ -28,10 +28,6 @@ class Player extends Sprite  {
     this.gravity = 1
 
     this.collisionBlocks = collisionBlocks
-    this.canDash = true
-
-    this.lastDashTime = 0
-    this.dashCooldown = 1000
   }
   
 
@@ -212,4 +208,28 @@ detectRisk() {
         }
   }
 }
+
+detectCloud() {
+    //vertikalne kolizie
+    for(let i = 0; i < clouds.length; i++) {
+      const cloud = clouds[i]
+
+      if(this.hitbox.position.x <= cloud.position.x + cloud.width &&
+        this.hitbox.position.x + this.hitbox.width >= cloud.position.x &&
+        this.hitbox.position.y + this.hitbox.height >= cloud.position.y &&
+        this.hitbox.position.y <= cloud.position.y 
+      ) {
+        
+
+        if(this.velocity.y > 0) {
+          player.velocity.y = -20
+
+          break
+        }
+      }
+    }
+  }
 }
+
+
+
