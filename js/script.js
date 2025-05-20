@@ -1,5 +1,7 @@
 const canvas = document.getElementById("canvas");
 const c = canvas.getContext("2d");
+const t = canvas.getContext("2d");
+
 
 // musi byt 16:9
 // fullscreen sa neda :(
@@ -11,7 +13,6 @@ document.querySelector('.difficulty').addEventListener('click', (event) => {
     if (event.target.tagName === 'B') {
         currentDifficulty = event.target.textContent;
         console.log(`Selected difficulty: ${event.target.textContent}`);
-        
     }
 });
 
@@ -44,8 +45,8 @@ let levels = {
       parsedCollisions = level1Collisions.Parse2D();
       collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
       player.collisionBlocks = collisionBlocks
-      player.position.x = 160
-      player.position.y = 350 //position sa meni
+      player.position.x = 800
+      player.position.y = 100 //position sa meni
       portals = [
         new Sprite ({
           position: {
@@ -717,6 +718,8 @@ let keys = {
   },
 };
 
+
+
 function animate() {
   window.requestAnimationFrame(animate);
   background.draw();
@@ -739,9 +742,8 @@ function animate() {
     cloud.draw();
   });
   
-
+  
   player.velocity.x = 0;
-
   player.playerMovement(keys)
   kolagen.draw()
   kolagen.refill()
@@ -749,6 +751,7 @@ function animate() {
   player.update();
   player.detectCloud()
   player.detectRisk()
+  player.textAppear()
   c.save()
   c.globalAlpha = overlay.opacity
   c.fillStyle = 'black'

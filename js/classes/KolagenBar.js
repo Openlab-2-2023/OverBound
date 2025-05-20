@@ -9,14 +9,16 @@ class Kolagen {
   }
 
   draw() {
-    c.fillStyle = "gray";
-    c.fillRect(50, 50, 10, 70);
+    const k = canvas.getContext("2d");
+
+    k.fillStyle = "gray";
+    k.fillRect(50, 50, 10, 70);
     //gradient
-    const grad = c.createLinearGradient(2, 0, 36, 100);
+    const grad = k.createLinearGradient(2, 0, 36, 100);
     grad.addColorStop(0.5, "#ff8d00");
     grad.addColorStop(1, "#020024");
-    c.fillStyle = grad;//az po tialto je farbicka 
-    c.fillRect(this.position.x, this.position.y, this.width, this.kolagenbar); //pozicia, vyska, sirka kolagen baru
+    k.fillStyle = grad;//az po tialto je farbicka 
+    k.fillRect(this.position.x, this.position.y, this.width, this.kolagenbar); //pozicia, vyska, sirka kolagen baru
   }
 
   refill() {

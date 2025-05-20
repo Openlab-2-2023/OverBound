@@ -229,6 +229,27 @@ detectCloud() {
       }
     }
   }
+
+  textAppear() {
+    for(let i = 0; i < portals.length; i++) {
+      const portal = portals[i]
+      if(player.hitbox.position.x <= portal.position.x + portal.width &&
+        player.hitbox.position.x + player.hitbox.width >= portal.position.x &&
+        player.hitbox.position.y + player.hitbox.height >= portal.position.y &&
+        player.hitbox.position.y <= portal.position.y + portal.height) {
+          if(level == 1) {
+          c.fillStyle = 'black'
+          c.fillRect(portal.position.x - 30,portal.position.y - 60,120,40)
+          c.fillStyle = 'white';
+          document.fonts.ready.then(() => {
+            c.font = "18px Arial";
+          });
+          c.fillText("Press E",portal.position.x ,portal.position.y - 31);
+          }
+          
+        } 
+    }
+  }
 }
 
 
