@@ -246,7 +246,7 @@ let levels = {
             x:450,
             y:300
           },
-          imageSrc: './sprites/other/clouds.png',
+          imageSrc: '',
           frameRate: 5,
           frameBuffer: 13,
           loop:true,
@@ -348,8 +348,8 @@ let levels = {
       portals = [
         new Sprite ({
           position: {
-            x:920,
-            y:45
+            x:950,
+            y:175
           },
           imageSrc: './sprites/other/portal.png',
           frameRate: 6,
@@ -389,12 +389,23 @@ let levels = {
       clouds = [
         new Sprite ({
           position: {
-            x:500,
-            y:300
+            x:200,
+            y:280
           },
-          imageSrc: '',
-          frameRate: 6,
-          frameBuffer: 8,
+          imageSrc: './sprites/other/clouds.png',
+          frameRate: 5,
+          frameBuffer: 13,
+          loop:true
+        }),
+
+        new Sprite ({
+          position: {
+            x:825,
+            y:320
+          },
+          imageSrc: './sprites/other/clouds.png',
+          frameRate: 5,
+          frameBuffer: 13,
           loop:true
         })
       ]
@@ -416,13 +427,13 @@ let levels = {
       parsedCollisions = level6Collisions.Parse2D();
       collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
       player.collisionBlocks = collisionBlocks
-      player.position.x = 50
-      player.position.y = 350
+      player.position.x = 40
+      player.position.y = 450
       portals = [
         new Sprite ({
           position: {
-            x:920,
-            y:45
+            x:950,
+            y:180
           },
           imageSrc: './sprites/other/portal.png',
           frameRate: 6,
@@ -473,7 +484,7 @@ let levels = {
       ]
     }
   },
-  9: {
+  7: {
     init: () => {
       background = new Sprite({
         position: {
@@ -562,24 +573,26 @@ let levels = {
       clouds = [
         new Sprite ({
           position: {
-            x:300,
+            x:420,
             y:450
           },
-          imageSrc: './sprites/other/portal.png',
-          frameRate: 6,
-          frameBuffer: 8,
+          imageSrc: './sprites/other/clouds.png',
+          frameRate: 5,
+          frameBuffer: 13,
           loop:true
         }),
+
         new Sprite ({
           position: {
-            x:600,
+            x:700,
             y:300
           },
-          imageSrc: './sprites/other/portal.png',
-          frameRate: 6,
-          frameBuffer: 8,
+          imageSrc: './sprites/other/clouds.png',
+          frameRate: 5,
+          frameBuffer: 13,
           loop:true
-        })
+        }),
+        
       ]
     }
   },
