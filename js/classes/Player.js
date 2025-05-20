@@ -131,7 +131,7 @@ playerMovement(keys) {
       if(keys.o.pressed) {
         this.dash()
           if(!player.velocity.x == 0) {
-          //player.switchSprite('charge')
+          player.switchSprite(player.lastDirection === 'right' ? 'dash' : 'dashLeft')
         }
       }
     } else if (keys.a.pressed) {
@@ -139,13 +139,12 @@ playerMovement(keys) {
       if(keys.o.pressed) {
         this.dash()
         if(!player.velocity.x == 0) {
-        //player.switchSprite('charge')
+        player.switchSprite(player.lastDirection === 'right' ? 'dash' : 'dashLeft')
         }
       }
-    } else if (keys.p.pressed && !keys.d.pressed && !keys.a.pressed) {
-      this.chargePlayer();
-    }  else if(keys.o.pressed) {
+    } else if(keys.o.pressed) {
       this.dash()
+      
     } 
     } else {
       if (keys.d.pressed) {
@@ -189,10 +188,10 @@ crouchPlayer() {
 
 dash() {
   player.velocity.x = player.lastDirection === 'right' ? 18 : -18
+  
   setTimeout(() => {
     player.velocity.x = 0;
     keys.o.pressed = false;
-    
   }, 100);
 }
 

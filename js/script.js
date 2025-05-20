@@ -26,7 +26,7 @@ const overlay = {
   opacity: 0
 }
 const kolagen = new Kolagen()
-let level = 9
+let level = 1
 let levels = {
   1: { //odtialto kopiruj
     init: () => {
@@ -44,7 +44,7 @@ let levels = {
       parsedCollisions = level1Collisions.Parse2D();
       collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
       player.collisionBlocks = collisionBlocks
-      player.position.x = 200
+      player.position.x = 160
       player.position.y = 350 //position sa meni
       portals = [
         new Sprite ({
@@ -52,7 +52,7 @@ let levels = {
             x:920,
             y:80
           },
-          imageSrc: './sprites/other/portal.png',//position sa meni + cesta
+          imageSrc: './sprites/other/cloud.png',//position sa meni + cesta
           frameRate: 6,
           frameBuffer: 8,
           loop:true
@@ -200,7 +200,7 @@ let levels = {
       parsedCollisions = level3Collisions.Parse2D();
       collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
       player.collisionBlocks = collisionBlocks
-      player.position.x = 50
+      player.position.x = 100
       player.position.y = 350
       portals = [
         new Sprite ({
@@ -243,13 +243,13 @@ let levels = {
       clouds = [
         new Sprite ({
           position: {
-            x:500,
+            x:450,
             y:300
           },
-          imageSrc: './sprites/other/portal.png',
-          frameRate: 6,
-          frameBuffer: 8,
-          loop:true
+          imageSrc: './sprites/other/clouds.png',
+          frameRate: 5,
+          frameBuffer: 13,
+          loop:true,
         })
       ]
     }
@@ -327,7 +327,7 @@ let levels = {
       ]
     }
   },
-    9: {
+    5: {
     init: () => {
       background = new Sprite({
         position: {
@@ -476,6 +476,20 @@ const player = new Player({
       imageSrc: './sprites/character/runleft.png'
     },
 
+    dash: {
+      frameRate: 1,
+      frameBuffer: 1,
+      loop: true,
+      imageSrc: './sprites/character/dash.png'
+    },
+
+    dashLeft: {
+      frameRate: 1,
+      frameBuffer: 1,
+      loop: true,
+      imageSrc: './sprites/character/dashleft.png'
+    },
+
     crouch: {
       frameRate: 4,
       frameBuffer: 4,
@@ -565,6 +579,7 @@ function animate() {
   clouds.forEach((cloud) => {
     cloud.draw();
   });
+  
 
   player.velocity.x = 0;
 
@@ -573,10 +588,8 @@ function animate() {
   kolagen.refill()
   player.draw();
   player.update();
-    player.detectCloud()
-
+  player.detectCloud()
   player.detectRisk()
-
   c.save()
   c.globalAlpha = overlay.opacity
   c.fillStyle = 'black'
@@ -682,6 +695,7 @@ window.addEventListener("keyup", (event) => {
       keys.w.pressed = false;
       break;
 
+
       
   }
 })
@@ -697,5 +711,3 @@ window.addEventListener('keydown', (event) => {
       break;
   }
 });
-
-
