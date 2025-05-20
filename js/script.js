@@ -52,7 +52,7 @@ let levels = {
             x:920,
             y:80
           },
-          imageSrc: './sprites/other/cloud.png',//position sa meni + cesta
+          imageSrc: './sprites/other/portal.png',//position sa meni + cesta
           frameRate: 6,
           frameBuffer: 8,
           loop:true
@@ -328,6 +328,152 @@ let levels = {
     }
   },
     5: {
+    init: () => {
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+      
+        
+      //obrazok levelu
+        imageSrc: "./sprites/levels/level5.png",
+      });
+      
+      parsedCollisions = level5Collisions.Parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
+      player.collisionBlocks = collisionBlocks
+      player.position.x = 50
+      player.position.y = 350
+      portals = [
+        new Sprite ({
+          position: {
+            x:920,
+            y:45
+          },
+          imageSrc: './sprites/other/portal.png',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+
+          
+        })
+      ]
+
+      animals = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:324
+          },
+          imageSrc: '',
+          frameRate: 4,
+          frameBuffer: 12,
+          loop:true
+        })
+      ]
+
+      risks = [
+        new Sprite ({
+          position: {
+            x:700,
+            y:400
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+
+      clouds = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:300
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+    }
+  },
+  6: {
+    init: () => {
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+      
+        
+      //obrazok levelu
+        imageSrc: "./sprites/levels/level6.png",
+      });
+      
+      parsedCollisions = level6Collisions.Parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
+      player.collisionBlocks = collisionBlocks
+      player.position.x = 50
+      player.position.y = 350
+      portals = [
+        new Sprite ({
+          position: {
+            x:920,
+            y:45
+          },
+          imageSrc: './sprites/other/portal.png',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+
+          
+        })
+      ]
+
+      animals = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:324
+          },
+          imageSrc: '',
+          frameRate: 4,
+          frameBuffer: 12,
+          loop:true
+        })
+      ]
+
+      risks = [
+        new Sprite ({
+          position: {
+            x:700,
+            y:400
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+
+      clouds = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:300
+          },
+          imageSrc: '',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+        })
+      ]
+    }
+  },
+  9: {
     init: () => {
       background = new Sprite({
         position: {
