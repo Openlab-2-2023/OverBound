@@ -27,7 +27,7 @@ const overlay = {
   opacity: 0
 }
 const kolagen = new Kolagen()
-let level = 1
+let level = 7
 let levels = {
   1: { //odtialto kopiruj
     init: () => {
@@ -480,6 +480,106 @@ let levels = {
       ]
     }
   },
+  7: {
+    init: () => {
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+      
+        
+      //obrazok levelu
+        imageSrc: "./sprites/levels/level7.png",
+      });
+      
+      parsedCollisions = level7Collisions.Parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
+      player.collisionBlocks = collisionBlocks
+      player.position.x = 50
+      player.position.y = 500
+      player.levelSpawnPosition = {
+        x:50,
+        y:50
+      }
+      portals = [
+        new Sprite ({
+          position: {
+            x:950,
+            y:60
+          },
+          imageSrc: './sprites/other/portal.png',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+
+          
+        })
+      ]
+
+      animals = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:324
+          },
+          imageSrc: '',
+          frameRate: 4,
+          frameBuffer: 12,
+          loop:true
+        })
+      ]
+
+      risks = [
+        new Sprite ({
+          position: {
+            x:380,
+            y:592
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 27,
+          frameBuffer: 3,
+          loop:true
+        }),
+        new Sprite ({
+          position: {
+            x:130,
+            y:592
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 27,
+          frameBuffer: 3,
+          loop:true
+          
+        }),
+        new Sprite ({
+          position: {
+            x:630,
+            y:592
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 27,
+          frameBuffer: 3,
+          loop:true
+        })
+      ]
+
+      clouds = [
+        new Sprite ({
+          position: {
+            x:200,
+            y:280
+          },
+          imageSrc: '',
+          frameRate: 5,
+          frameBuffer: 13,
+          loop:true
+        }),
+
+        
+      ]
+    }
+  },
   8: {
     init: () => {
       background = new Sprite({
@@ -894,7 +994,7 @@ window.addEventListener("keydown", (event) => {
       //maly jump
       if(player.velocity.y == 0 && kolagen.kolagenbar <= -14) {
         if(currentDifficulty === 'normal') {
-          player.velocity.y = -17;
+          player.velocity.y = -16;
           kolagen.kolagenbar = kolagen.kolagenbar + 14;
         } else {
           player.velocity.y = -17;
