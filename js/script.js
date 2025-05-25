@@ -27,7 +27,7 @@ const overlay = {
   opacity: 0
 }
 const kolagen = new Kolagen()
-let level = 7
+let level = 6
 let levels = {
   1: { //odtialto kopiruj
     init: () => {
@@ -497,7 +497,7 @@ let levels = {
       collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
       player.collisionBlocks = collisionBlocks
       player.position.x = 50
-      player.position.y = 500
+      player.position.y = 100
       player.levelSpawnPosition = {
         x:50,
         y:50
