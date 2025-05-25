@@ -164,29 +164,4 @@ const level9Collisions = [1167, 1167, 1167, 1167, 1167, 1167, 1167, 1167, 1167, 
             1167, 1167, 1167, 1167, 1167, 833, 833, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1023, 1023, 1167,
             1167, 0, 0, 0,0 , 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1167]
 
-Array.prototype.Parse2D = function() {
-  let rows = []
-  for(let i = 0; i < this.length; i+= 32 ) {
-    rows.push(this.slice(i, i + 32))
-    
-  }
-  return rows
-}
 
-Array.prototype.createObjectsFrom2D = function() {
-  const objects = []
-  this.forEach((row, y) => {
-    row.forEach((symbol, x) => {
-      if(symbol === 1167 ) {
-        objects.push(
-          new CollisionBlock({
-            position: {
-              x: x * 32,
-              y: y * 32
-            }
-        }))
-      }
-    })
-})
-return objects
-}
