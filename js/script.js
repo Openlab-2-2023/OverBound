@@ -45,8 +45,8 @@ let levels = {
       parsedCollisions = level1Collisions.Parse2D();
       collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
       player.collisionBlocks = collisionBlocks
-      player.position.x = 800
-      player.position.y = 100 //position sa meni
+      player.position.x = 150
+      player.position.y = 250//position sa meni
       portals = [
         new Sprite ({
           position: {
@@ -350,7 +350,7 @@ let levels = {
         new Sprite ({
           position: {
             x:950,
-            y:175
+            y:230
           },
           imageSrc: './sprites/other/portal.png',
           frameRate: 6,
@@ -399,16 +399,7 @@ let levels = {
           loop:true
         }),
 
-        new Sprite ({
-          position: {
-            x:825,
-            y:320
-          },
-          imageSrc: './sprites/other/clouds.png',
-          frameRate: 5,
-          frameBuffer: 13,
-          loop:true
-        })
+        
       ]
     }
   },
@@ -430,6 +421,10 @@ let levels = {
       player.collisionBlocks = collisionBlocks
       player.position.x = 40
       player.position.y = 450
+      player.levelSpawnPosition = {
+        x:50,
+        y:350
+      }
       portals = [
         new Sprite ({
           position: {
@@ -461,12 +456,12 @@ let levels = {
       risks = [
         new Sprite ({
           position: {
-            x:700,
-            y:400
+            x:300,
+            y:450
           },
-          imageSrc: '',
-          frameRate: 6,
-          frameBuffer: 8,
+          imageSrc: "./sprites/other/sandworm.png",
+          frameRate: 27,
+          frameBuffer: 3,
           loop:true
         })
       ]
@@ -485,7 +480,107 @@ let levels = {
       ]
     }
   },
-  7: {
+  8: {
+    init: () => {
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+      
+        
+      //obrazok levelu
+        imageSrc: "./sprites/levels/level8.png",
+      });
+      
+      parsedCollisions = level8Collisions.Parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
+      player.collisionBlocks = collisionBlocks
+      player.position.x = 50
+      player.position.y = 350
+      player.levelSpawnPosition = {
+        x:100,
+        y:350
+      }
+      portals = [
+        new Sprite ({
+          position: {
+            x:950,
+            y:60
+          },
+          imageSrc: './sprites/other/portal.png',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
+
+          
+        })
+      ]
+
+      animals = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:324
+          },
+          imageSrc: '',
+          frameRate: 4,
+          frameBuffer: 12,
+          loop:true
+        })
+      ]
+
+      risks = [
+        new Sprite ({
+          position: {
+            x:380,
+            y:420
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 27,
+          frameBuffer: 3,
+          loop:true
+        }),
+        new Sprite ({
+          position: {
+            x:170,
+            y:420
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 27,
+          frameBuffer: 3,
+          loop:true
+          
+        }),
+        new Sprite ({
+          position: {
+            x:750,
+            y:420
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 27,
+          frameBuffer: 3,
+          loop:true
+        })
+      ]
+
+      clouds = [
+        new Sprite ({
+          position: {
+            x:200,
+            y:280
+          },
+          imageSrc: '',
+          frameRate: 5,
+          frameBuffer: 13,
+          loop:true
+        }),
+
+        
+      ]
+    }
+  },
+  9: {
     init: () => {
       background = new Sprite({
         position: {
