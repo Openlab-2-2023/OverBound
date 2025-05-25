@@ -123,7 +123,7 @@ class Player extends Sprite  {
     }
   }
 
-playerMovement(keys) {
+playerMovement() {
   if (!keys.s.pressed) {
     if(currentDifficulty === 'normal') {
       if (keys.d.pressed) {
