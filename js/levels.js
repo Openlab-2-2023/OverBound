@@ -9,7 +9,7 @@ const overlay = {
   opacity: 0
 }
 const kolagen = new Kolagen()
-let level = 1
+let level = 10
 let levels = {
   1: { //odtialto kopiruj
     init: () => {
@@ -774,8 +774,119 @@ let levels = {
       ]
     }
   },
+10: {
+    init: () => {
+      background = new Sprite({
+        position: {
+          x: 0,
+          y: 0,
+        },
+      
+        
+      //obrazok levelu
+        imageSrc: "./sprites/levels/level10.png",
+      });
+      
+      parsedCollisions = level10Collisions.Parse2D();
+      collisionBlocks = parsedCollisions.createObjectsFrom2D(); 
+      player.collisionBlocks = collisionBlocks
+      player.position.x = 50
+      player.position.y = 350
+      player.levelSpawnPosition = {
+        x:50,
+        y:350
+      }
+      
+      portals = [
+        new Sprite ({
+          position: {
+            x:920,
+            y:60
+          },
+          imageSrc: './sprites/other/portal.png',
+          frameRate: 6,
+          frameBuffer: 8,
+          loop:true
 
-  10: {
+          
+        })
+      ]
+
+      animals = [
+        new Sprite ({
+          position: {
+            x:500,
+            y:324
+          },
+          imageSrc: '',
+          frameRate: 4,
+          frameBuffer: 12,
+          loop:true
+        })
+      ]
+
+      risks = [
+        new Sprite ({
+          position: {
+            x:160,
+            y:550
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 0,
+          frameBuffer: 3,
+          loop:false
+        }),
+
+        new Sprite ({
+          position: {
+            x:430,
+            y:550
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 0,
+          frameBuffer: 3,
+          loop:false
+        }),
+
+        new Sprite ({
+          position: {
+            x:700,
+            y:550
+          },
+          imageSrc: './sprites/other/sandworm.png',
+          frameRate: 0,
+          frameBuffer: 3,
+          loop:false
+        }),
+      ]
+
+      clouds = [
+        new Sprite ({
+          position: {
+            x:420,
+            y:450
+          },
+          imageSrc: '',
+          frameRate: 5,
+          frameBuffer: 13,
+          loop:true
+        }),
+
+        new Sprite ({
+          position: {
+            x:700,
+            y:300
+          },
+          imageSrc: '',
+          frameRate: 5,
+          frameBuffer: 13,
+          loop:true
+        }),
+        
+      ]
+    }
+  },
+  11: {
     init: () => {
       window.location.href = 'endscreen.html'
   },
