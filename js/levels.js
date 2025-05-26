@@ -9,7 +9,7 @@ const overlay = {
   opacity: 0
 }
 const kolagen = new Kolagen()
-let level = 10
+let level = 1
 let levels = {
   1: { //odtialto kopiruj
     init: () => {
