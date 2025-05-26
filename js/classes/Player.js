@@ -204,7 +204,7 @@ detectRisk() {
         player.hitbox.position.y <= risk.position.y + risk.height) {
           player.position.x = player.levelSpawnPosition.x
           player.position.y = player.levelSpawnPosition.y
-          
+          kolagen.kolagenbar = -70          
         }
   }
 }

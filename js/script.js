@@ -8,8 +8,6 @@ const t = canvas.getContext("2d");
 canvas.width = 1024;
 canvas.height = 596;
 
-
-
 function animate() {
   window.requestAnimationFrame(animate);
   background.draw();

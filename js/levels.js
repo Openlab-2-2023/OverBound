@@ -774,4 +774,11 @@ let levels = {
       ]
     }
   },
+
+  10: {
+    init: () => {
+      window.location.href = 'endscreen.html'
+  },
+}
+
 }
