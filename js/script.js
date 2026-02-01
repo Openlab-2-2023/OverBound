@@ -7,6 +7,7 @@ const t = canvas.getContext("2d");
 // fullscreen sa neda :(
 canvas.width = 1024;
 canvas.height = 596;
+console.log("pako")
 
 function animate() {
   window.requestAnimationFrame(animate);
